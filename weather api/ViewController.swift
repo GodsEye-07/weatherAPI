@@ -11,31 +11,20 @@ import Alamofire
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var cityNameLabel: UILabel!
     
     var url = "https://api.openweathermap.org/data/2.5/forecast?id="
     var cityId = "524901"
     let apiKey = "2ca95193405ac2cab082bd4009dbdf9f"
     
+    var cityname = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            let FINALURL = url+cityId+"&APPID="+apiKey
+        weatherData()
         
-        
-        guard let finalUrl = URL(string: FINALURL) else {
-            return
-        }
-        
-        Alamofire.request(finalUrl, method: .get)
-        
-            .responseJSON { (response) in
-                print(response)
-                
-                
-                
-        }
-
         
     }
 
@@ -44,6 +33,36 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    func weatherData(){
+        
+        let FINALURL = url+cityId+"&APPID="+apiKey
+        
+        guard let finalUrl = URL(string: FINALURL) else {
+            return
+        }
+        
+        Alamofire.request(finalUrl, method: .get)
+            
+            .responseJSON { (response) in
+                
+//                print(response)
+                
+                
+                if let res = response.value as? Dictionary<String,Any>{
+                    if let city = res["city"] as? Dictionary<String,Any>{
+                        if let cityName = city["name"] as? String{
+                            self.cityNameLabel.text = cityName
+                        }
+                    }
+                    
+                }
+                
+            }
+        
+        
+    }
     
     
     
