@@ -19,13 +19,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    var url = "https://api.openweathermap.org/data/2.5/forecast?id="
+    let url = "https://api.openweathermap.org/data/2.5/forecast?id="
     var cityId = "524901"
     let apiKey = "2ca95193405ac2cab082bd4009dbdf9f"
-    
-    var cityname = [String]()
-    var countryname :String?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,20 +70,45 @@ class ViewController: UIViewController {
                                 print(longitude)
                             }
                         }
+                        if let cityId = city["id"] as? Int{
+                            print(cityId)
+                        }
                     }
-
-                  //type in the code for all the keys for the main dicionary.
-
+                    if let list = res["list"] as? [Dictionary<String,AnyObject>]{
+                        for i in 0..<list.count{
+                            if let dateText = list[i]["dt_txt"] as? String{
+//                                print(dateText)
+                            }
+                            if let weatherDetail = list[i]["weather"] as? [Dictionary<String,AnyObject>]{
+                                if let weather = weatherDetail[0]["main"] as? String{
+//                                    print(weather)
+                                }
+                            }
+                            if let mainData = list[i]["main"] as? Dictionary<String,Double>{
+                                if let temprature = mainData["temp"] {
+//                                    print(temprature)
+                                }
+                                if let max_temp = mainData["temp_max"]{
+//                                    print(max_temp)
+                                }
+                                if let min_temp = mainData["temp_min"]{
+//                                    print(min_temp)
+                                }
+                                if let pressure = mainData["pressure"]{
+//                                    print(pressure)
+                                }
+                                if let humidity = mainData["humidity"]{
+//                                    print(humidity)
+                                }
+                            }
+                        }
+                    }
                 }
-
             }
-
-        
-    }
+        }
     
     
     
 
 
 }
-
