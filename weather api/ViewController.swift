@@ -31,55 +31,57 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         weatherData()
-        
-        
+    
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     func weatherData(){
         
-        let FINALURL = url+cityId+"&APPID="+apiKey
-        
-        guard let finalUrl = URL(string: FINALURL) else {
+        guard let finalUrl = URL(string: "\(url)\(cityId)&APPID=\(apiKey)") else {
             return
         }
         
+        print(finalUrl)
+        
         Alamofire.request(finalUrl, method: .get)
-            
+
             .responseJSON { (response) in
-                
-//                print(response)
-                
-                
-                if let res = response.value as? Dictionary<String,Any>{
+  
+                if let res = response.value as? Dictionary<String,AnyObject>{
                     if let city = res["city"] as? Dictionary<String,Any>{
                         if let cityName = city["name"] as? String{
+                            self.cityNameLabel.text = cityName
                             print(cityName)
-                            //set the Label of the ciryName here.
-                            
                         }
                         if let countryName = city["country"] as? String{
-                            self.countryname = countryName
-                            
-                            if self.countryname == "RU"{
-                                print("RUSSIA")
+                            print(countryName)
+                            if countryName == "RU"{
+                                self.countryNameLabel.text = "Russia"
                             }
-//                            print(self.countryname!)
+
+                        }
+                        if let coord = city["coord"] as? Dictionary<String,AnyObject>{
+                            if let latitude  = coord["lat"] as? Float{
+                                self.latitudeLabel.text = "\(latitude)"
+                                print(latitude)
+                            }
+                            if let longitude  = coord["lon"] as? Float {
+                                self.LongitudeLabel.text = String(longitude)
+                                print(longitude)
+                            }
                         }
                     }
-                    
+
                   //type in the code for all the keys for the main dicionary.
-                    
+
                 }
-                
+
             }
-        
+
         
     }
     
