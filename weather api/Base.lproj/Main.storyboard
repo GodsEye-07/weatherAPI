@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -97,18 +97,24 @@
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="8m6-jR-Ozr">
+                                                <rect key="frame" x="177" y="130" width="20" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.16862745100000001" green="0.59607843140000005" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="i5U-7T-fwe" secondAttribute="bottom" constant="23" id="Bh3-Av-ddi"/>
+                                            <constraint firstItem="8m6-jR-Ozr" firstAttribute="centerY" secondItem="VaB-iP-fbo" secondAttribute="centerY" id="KaV-dg-c9F"/>
+                                            <constraint firstItem="8m6-jR-Ozr" firstAttribute="centerX" secondItem="VaB-iP-fbo" secondAttribute="centerX" id="Vvf-dF-ge7"/>
                                             <constraint firstAttribute="height" constant="280" id="a4A-UL-mkP"/>
                                             <constraint firstItem="i5U-7T-fwe" firstAttribute="top" secondItem="VaB-iP-fbo" secondAttribute="top" constant="25" id="cFB-WJ-594"/>
                                             <constraint firstItem="i5U-7T-fwe" firstAttribute="leading" secondItem="VaB-iP-fbo" secondAttribute="leading" constant="24" id="m9Q-6w-G5j"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uD4-Xx-SJ4">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uD4-Xx-SJ4">
                                         <rect key="frame" x="0.0" y="280" width="375" height="387"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="140" id="zds-s9-67G" customClass="weatherTableViewCell" customModule="weather_api" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="140"/>
@@ -186,6 +192,10 @@
                                                                     <rect key="frame" x="280" y="0.0" width="75" height="75"/>
                                                                 </imageView>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="gi7-DT-7EC" secondAttribute="trailing" id="OTo-xD-rAX"/>
+                                                                <constraint firstItem="gi7-DT-7EC" firstAttribute="top" secondItem="Xz0-2a-SMd" secondAttribute="top" id="Ufc-oo-zLn"/>
+                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
@@ -223,6 +233,7 @@
                     </view>
                     <connections>
                         <outlet property="LongitudeLabel" destination="hc0-pd-WH2" id="t6T-ki-NoP"/>
+                        <outlet property="activityIndicator" destination="8m6-jR-Ozr" id="DoI-9V-3O8"/>
                         <outlet property="cityNameLabel" destination="CVS-7H-W1J" id="lVX-2f-wGs"/>
                         <outlet property="countryNameLabel" destination="YOe-Jb-Pby" id="hct-9S-l72"/>
                         <outlet property="currentImageView" destination="gev-H0-olx" id="wPo-Us-wAt"/>
